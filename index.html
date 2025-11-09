@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<!-- 修改：语言设置为英文 -->
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- 替换成你文章的标题 -->
-    <title>PatchScene: 你的论文标题</title>
+    <title>PatchScene: Patch-based Voxel Diffusion Model for Large-Scale Scene Completion</title>
     <!-- 加载 Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* 使用 Inter 字体 (Tailwind 默认) */
         body {
             font-family: 'Inter', sans-serif;
+            line-height: 1.6;
         }
         /* BibTeX 引用样式 */
         .bibtex {
@@ -21,132 +22,332 @@
             border-radius: 0.5rem; /* rounded-lg */
             padding: 1rem; /* p-4 */
             overflow-x: auto; /* 可横向滚动 */
+            font-size: 0.875rem; /* text-sm */
         }
+        /* 为视频嵌入提供响应式比例 */
+        .video-responsive {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 0.5rem; /* rounded-lg */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+            border: 1px solid #e5e7eb; /* border-gray-200 */
+        }
+        .video-responsive iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        section {
+            margin-bottom: 3rem; /* mb-12 */
+        }
+        h2 {
+            font-size: 1.875rem; /* text-3xl */
+            font-weight: 700; /* font-bold */
+            text-align: center;
+            margin-bottom: 1.5rem; /* mb-6 */
+        }
+        h3 {
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: 600; /* font-semibold */
+            margin-bottom: 1rem; /* mb-4 */
+        }
+
+        /* --- 新增样式 --- */
+        
+        /* 模仿 CADGrasp 标题颜色 */
+        .title-purple { color: #8a3ffc; } /* 示例紫色 */
+        .title-teal { color: #00bfa0; }   /* 示例蓝绿色 */
+        .title-orange { color: #ff7832; }  /* 示例橙色 */
+
+        /* 图像轮播 (Carousel) 样式 */
+        .carousel-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch; /* for smooth scrolling on iOS */
+            border-radius: 0.5rem; /* rounded-lg */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+            border: 1px solid #e5e7eb; /* border-gray-200 */
+        }
+        .carousel-item {
+            flex: 0 0 100%;
+            scroll-snap-align: center;
+            width: 100%;
+        }
+        .carousel-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        /* --- 样式结束 --- */
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-white text-gray-900">
 
-    <!-- 主内容容器 -->
-    <div class="container mx-auto max-w-5xl px-4 py-12">
+    <!-- 主内容容器 - 使用 max-w-4xl 模仿 cadgrasp 的宽度 -->
+    <div class="container mx-auto max-w-4xl px-4 py-12">
 
         <!-- 1. 论文标题 -->
-        <header class="text-center mb-8">
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-900">
-                <!-- 在这里填入你的论文标题 -->
-                PatchScene: 一个关于场景生成的补丁方法 (示例标题)
+        <header>
+            <!-- 已修改：添加彩色 span 标签 -->
+            <h1 class="text-4xl md:text-5xl font-bold text-center mb-4">
+                <span class="title-purple">PatchScene</span>: Patch-based <span class="title-teal">Voxel Diffusion Model</span> for Large-Scale <span class="title-orange">Scene Completion</span>
             </h1>
         </header>
 
-        <!-- 2. 作者列表 -->
+        <!-- 2. 会议/期刊信息 (模仿 cadgrasp) -->
         <section class="text-center mb-6">
-            <h2 class="text-xl md:text-2xl">
+            <p class="text-2xl text-blue-600 font-semibold">
+                <!-- 已根据你的截图更新 -->
+                CVPR 2026 Conference Submission
+            </p>
+        </section>
+
+        <!-- 3. 作者列表 -->
+        <section class="text-center mb-4">
+            <h2 class="text-xl md:text-2xl font-medium">
                 <!-- 
-                  替换成作者名字. 
-                  建议使用 <sup> 标签添加机构编号.
-                  <a> 标签可以链接到作者的个人主页.
+                  已根据你的信息更新作者和上标
                 -->
-                <a href="#" class="text-blue-600 hover:underline">作者一</a><sup>1</sup>,
-                <a href="#" class="text-blue-600 hover:underline">作者二</a><sup>2</sup>,
-                <a href="#" class="text-blue-600 hover:underline">作者三</a><sup>1,2</sup>
+                <a href="#" class="text-blue-600 hover:underline">Qingdong Xu</a><sup>1</sup>,
+                <a href="#" class="text-blue-600 hover:underline">Jiajun Zhu</a><sup>1</sup>,
+                <a href="#" class="text-blue-600 hover:underline">Shilin Zhu</a><sup>2</sup>,
+                <a href="#" class="text-blue-600 hover:underline">XinjingHe</a><sup>3</sup>,
+                <a href="#" class="text-blue-600 hover:underline">Chao.Lu</a><sup>1</sup>,
+                <a href="#" class="text-blue-600 hover:underline">wanghuanran</a><sup>1</sup>,
+                <a href="#" class="text-blue-600 hover:underline">Jiyao Zhang</a><sup>4</sup>
             </h2>
         </section>
 
-        <!-- 3. 机构列表 -->
+        <!-- 4. 机构列表 -->
         <section class="text-center text-lg text-gray-600 mb-10">
-            <!-- 替换成对应的机构 -->
-            <p><sup>1</sup>机构一 (例如：北京大学)</p>
-            <p><sup>2</sup>机构二 (例如：Google Research)</p>
+            <!-- 已根据你的信息更新机构 -->
+            <p>
+                <sup>1</sup>Megvii Technology &nbsp;&nbsp;&nbsp;
+                <sup>2</sup>Northeastern University
+            </p>
+            <p>
+                <sup>3</sup>Northwestern Polytechnical University &nbsp;&nbsp;&nbsp;
+                <sup>4</sup>Peking University
+            </p>
         </section>
 
-        <!-- 4. 关键链接 (论文、代码等) -->
-        <section class="flex justify-center gap-4 mb-12 flex-wrap">
-            <!-- 
-              将 "#" 替换成你的实际链接 (例如 PDF 文件, arXiv 页面, GitHub 仓库)
-              建议你将 PDF 文件也上传到你的仓库中
-            -->
-            <a href="#" class_comment="[PDF 链接]"
-               class="bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 transition-colors duration-300 text-lg">
-                <i class="fas fa-file-pdf mr-2"></i> 论文 (PDF)
-            </a>
-            <a href="https://github.com/Mr-ZhuJun/patchscene.github.io" class_comment="[代码链接]"
-               class="bg-gray-800 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-gray-900 transition-colors duration-300 text-lg">
-                <i class="fas fa-code mr-2"></i> 代码 (GitHub)
-            </a>
-            <a href="#" class_comment="[视频链接 - 可选]"
-               class="bg-red-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-red-700 transition-colors duration-300 text-lg">
-                <i class="fas fa-video mr-2"></i> 视频
-            </a>
-            <a href="#" class_comment="[Demo 链接 - 可选]"
-               class="bg-green-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-green-700 transition-colors duration-300 text-lg">
-                <i class="fas fa-laptop-code mr-2"></i> Demo
-            </a>
-        </section>
-
-        <!-- 5. "Teaser" 图像 -->
-        <section class="mb-12">
+        <!-- 
+          --- 布局调整 ---
+          第 6 节 "Teaser" 图像移到这里
+        -->
+        <!-- 6. "Teaser" 图像 (模仿 cadgrasp, 放在作者之后) -->
+        <section>
             <figure class="w-full">
                 <!-- 
                   替换成你的 "Teaser" 图像.
-                  建议将图片 (例如 teaser.jpg) 放在仓库的 "images" 文件夹中, 
-                  然后路径设置为 "images/teaser.jpg".
-                  这里使用了一个占位符.
+                  建议将图片 (例如 teaser.png) 也上传到仓库中.
                 -->
-                <img src="https://placehold.co/1024x512/e2e8f0/4a5568?text=你的+Teaser+图像+(1024x512)"
-                     alt="论文的 Teaser 图像"
+                <img src="https://placehold.co/1024x512/e2e8f0/4a5568?text=PatchScene+Teaser+Image+(Replace+Me)"
+                     alt="PatchScene Teaser Image"
                      class="w-full h-auto rounded-lg shadow-lg border border-gray-200">
+                <!-- 修改：中文图注 -> 英文 -->
                 <figcaption class="text-center text-gray-600 mt-4 text-lg">
-                    <!-- 替换成你的图像描述 -->
-                    图 1: 我们的方法 (PatchScene) 如何工作的概览。
+                    Figure 1: Overview of the PatchScene method: achieving large-scale scene completion via patch-based voxel diffusion and spatio-temporal fusion.
                 </figcaption>
             </figure>
         </section>
 
-        <!-- 6. 摘要 (Abstract) -->
+        <!-- 
+          --- 新增章节 ---
+          第 6.5 节 "图片轮播" 
+        -->
         <section class="mb-12">
-            <h2 class="text-3xl font-bold text-center mb-6">摘要 (Abstract)</h2>
-            <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
+            <div class="carousel-container">
+                <!-- 在这里为你自己添加图片 -->
+                <div class="carousel-item">
+                    <img src="https://placehold.co/1024x576/e2e8f0/4a5568?text=Carousel+Image+1+(Replace+Me)" alt="Carousel Image 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://placehold.co/1024x576/dbeafe/3b82f6?text=Carousel+Image+2+(Replace+Me)" alt="Carousel Image 2">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://placehold.co/1024x576/d1fae5/10b981?text=Carousel+Image+3+(Replace+Me)" alt="Carousel Image 3">
+                </div>
+            </div>
+            <!-- 修改：中文提示 -> 英文 -->
+            <p class="text-center text-gray-600 mt-4 text-sm">
+                (You can scroll left and right to see more images)
+            </p>
+        </section>
+
+
+        <!-- 
+          --- 布局调整 ---
+          第 5 节 "关键链接" 移到这里
+        -->
+        <!-- 5. 关键链接 -->
+        <section class="flex justify-center gap-3 md:gap-4 mb-12 flex-wrap">
+            <!-- 
+              将 "#" 替换成你的实际链接 (例如 PDF 文件, arXiv 页面, GitHub 仓库)
+            -->
+            <!-- 修改：去除中文 -->
+            <a href="#" class_comment="[PDF 链接]"
+               class="bg-blue-600 text-white font-semibold px-5 py-3 rounded-lg shadow-md hover:bg-blue-700 transition-colors duration-300 text-lg">
+                <i class="fas fa-file-pdf mr-2"></i> Paper
+            </a>
+            <!-- 修改：去除中文 -->
+            <a href="#" class_comment="[补充材料 链接]"
+               class="bg-gray-200 text-gray-800 font-semibold px-5 py-3 rounded-lg shadow-md hover:bg-gray-300 transition-colors duration-300 text-lg">
+                <i class="fas fa-file-alt mr-2"></i> Supp
+            </a>
+            <!-- 修改：去除中文 -->
+            <a href="[YOUR GITHUB CODE REPO LINK]" class_comment="[代码链接]"
+               class="bg-gray-800 text-white font-semibold px-5 py-3 rounded-lg shadow-md hover:bg-gray-900 transition-colors duration-300 text-lg">
+                <i class="fas fa-code mr-2"></i> Code
+            </a>
+            <!-- 修改：去除中文 -->
+            <a href="#video" class_comment="[视频锚点链接]"
+               class="bg-red-600 text-white font-semibold px-5 py-3 rounded-lg shadow-md hover:bg-red-700 transition-colors duration-300 text-lg">
+                <i class="fas fa-video mr-2"></i> Video
+            </a>
+        </section>
+
+        <!-- 
+          --- 布局调整 ---
+          第 7 节 "摘要" 移到这里
+        -->
+        <!-- 7. 摘要 (Abstract) -->
+        <section>
+            <!-- 修改：去除中文 -->
+            <h2>Abstract</h2>
+            <div class="bg-gray-50 p-6 rounded-lg shadow-inner border border-gray-200">
                 <p class="text-lg leading-relaxed text-gray-700">
-                    <!-- 在这里替换成你论文的摘要内容 -->
-                    这是一个占位符摘要。你的论文摘要应该清晰地阐述你所解决的问题、你使用的方法以及你的主要贡献。尽量保持简洁明了，让读者能快速了解你工作。
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                    <!-- 你提供的摘要 -->
+                    We propose PatchScene, a novel diffusion-based framework for large-scale LiDAR scene completion. Unlike existing methods that rely on global latent representations or dense voxel grids, PatchScene adopts a patch-based voxel diffusion paradigm that explicitly generates fine-grained geometry within localized 3D regions. To ensure coherent reconstruction at both spatial and temporal scales, we introduce a confidence-guided spatio-temporal fusion mechanism that integrates overlapping patches and adjacent frames in a unified generative process. Furthermore, we design an Annular-Flow diffusion strategy that leverages the radial density pattern of LiDAR scans to progressively propagate high-fidelity information from near-range to far-range regions, enabling spatially unbounded scene completion. Extensive experiments on the SemanticKITTI benchmark demonstrate that PatchScene achieves state-of-the-art performance across all standard metrics, surpassing previous approaches in both geometric accuracy and temporal consistency. Remarkably, the model trained on 25 m LiDAR ranges generalizes effectively to 50 m scenes without retraining, highlighting its strong scalability and generalization capability for real-world autonomous driving applications.
                 </p>
             </div>
         </section>
 
-        <!-- 7. 嵌入视频 (可选) -->
-        <section class="mb-12">
-            <h2 class="text-3xl font-bold text-center mb-6">视频演示</h2>
-            <div class="aspect-w-16 aspect-h-9 bg-gray-200 rounded-lg shadow-md overflow-hidden border border-gray-200">
+        <!-- 8. 嵌入视频 (你的要求) -->
+        <section id="video">
+            <!-- 修改：去除中文 -->
+            <h2>Video Demonstration</h2>
+            <div class="video-responsive bg-gray-200">
                 <!-- 
-                  如果
-                  你有 YouTube 或 Bilibili 视频:
+                  你有 YouTube 或 Bilibili 视频后:
                   1. 点击视频下方的 "分享" (Share)
                   2. 选择 "嵌入" (Embed)
-                  3. 复制 <iframe> 代码, 粘贴到下面替换掉这个 div
+                  3. 复制 <iframe> 代码, 粘贴到下面替换掉这个 <div>
                 -->
-                <div class="w-full h-full flex items-center justify-center text-gray-500">
-                    <p>你的视频播放器 (例如来自 YouTube 的 iframe)</p>
+                <!-- 修改：中文提示 -> 英文 -->
+                <div class="w-full h-full flex items-center justify-center text-gray-500 text-lg">
+                    <p>Video Embedding (16:9)</p>
                 </div>
             </div>
         </section>
 
-        <!-- 8. BibTeX 引用 -->
+        <!-- 9. 方法 (Method) - 模仿 cadgrasp 的多章节 -->
         <section>
-            <h2 class="text-3xl font-bold text-center mb-6">如何引用 (BibTeX)</h2>
+            <!-- 修改：去除中文 -->
+            <h2>Method</h2>
+            <!-- 修改：中文描述 -> 英文 -->
+            <p class="text-lg leading-relaxed text-gray-700 mb-6 text-center">
+                Our method, PatchScene, introduces three key innovations: (1) Patch-based Voxel Diffusion, (2) Confidence-Guided Spatio-Temporal Fusion, and (3) Annular-Flow Diffusion Strategy.
+            </p>
+            <figure class="w-full">
+                <!-- 放置一张方法流程图 -->
+                <!-- 修改：中文占位符 -> 英文 -->
+                <img src="https://placehold.co/1024x400/e2e8f0/4a5568?text=Method+Pipeline+Image"
+                     alt="PatchScene Method Pipeline"
+                     class="w-full h-auto rounded-lg shadow-md border border-gray-200">
+                <!-- 修改：中文图注 -> 英文 -->
+                <figcaption class="text-center text-gray-600 mt-4 text-lg">
+                    Figure 2: Detailed pipeline of the PatchScene framework.
+                </figcaption>
+            </figure>
+        </section>
+
+        <!-- 10. 结果与视频 (你的要求) - 模仿 cadgrasp 的结果展示 -->
+        <section>
+            <!-- 修改：标题简化 -->
+            <h2>Results</h2>
+            <!-- 修改：中文描述 -> 英文 -->
+            <p class="text-lg leading-relaxed text-gray-700 mb-8 text-center">
+                We conduct extensive experiments on the SemanticKITTI benchmark. PatchScene outperforms existing methods on all metrics.
+            </p>
+            
+            <!-- 结果对比 1 -->
+            <div class="mb-10">
+                <!-- 修改：去除中文 -->
+                <h3 class="text-center">25m Scene Completion Comparison</h3>
+                <!-- 修改：中文描述 -> 英文 -->
+                <p class="text-center text-gray-600 mb-4">Qualitative comparison with baseline methods. You can place side-by-side GIFs or videos here.</p>
+                <!-- 使用网格布局来并排比较 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <!-- 修改：去除中文 -->
+                        <h4 class="text-xl font-semibold text-center mb-2">Baseline</h4>
+                        <!-- 你可以在这里放 <img>, <video>, 或 <iframe> -->
+                        <!-- 修改：中文占位符 -> 英文 -->
+                        <img src="https://placehold.co/600x400/e2e8f0/4a5568?text=Baseline+Result+(Video/GIF)" class="w-full rounded-lg shadow-md border border-gray-200">
+                    </div>
+                    <div>
+                        <!-- 修改：去除中文 -->
+                        <h4 class="text-xl font-semibold text-center mb-2">PatchScene (Ours)</h4>
+                        <!-- 修改：中文占位符 -> 英文 -->
+                        <img src="https://placehold.co/600x400/e2e8f0/4a5568?text=Ours+Result+(Video/GIF)" class="w-full rounded-lg shadow-md border border-gray-200">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 结果对比 2 -->
+            <div class="mb-10">
+                <!-- 修改：去除中文 -->
+                <h3 class="text-center">50m Generalization</h3>
+                <!-- 修改：中文描述 -> 英文 -->
+                <p class="text-center text-gray-600 mb-4">The model, trained on 25m data, is tested directly on 50m scenes, showing strong generalization.</p>
+                <figure class="w-full">
+                    <!-- 修改：中文占位符 -> 英文 -->
+                    <img src="https://placehold.co/1024x400/e2e8f0/4a5568?text=50m+Generalization+Result+(Video/GIF)"
+                         alt="50m Generalization Result"
+                         class="w-full h-auto rounded-lg shadow-md border border-gray-200">
+                    <!-- 修改：中文图注 -> 英文 -->
+                    <figcaption class="text-center text-gray-600 mt-4 text-lg">
+                        Figure 3: Completion results for 50m scenes.
+                    </figcaption>
+                </figure>
+            </div>
+        </section>
+
+
+        <!-- 11. BibTeX 引用 -->
+        <section>
+            <!-- 修改：去除中文 -->
+            <h2>Citation (BibTeX)</h2>
             <!-- 
-              在下方 <pre> 标签内替换成你的 BibTeX.
-              确保保留 class="bibtex"
+              已根据你的截图更新作者和年份
             -->
             <pre class="bibtex">
-@article{ZhuJun2025PatchScene,
-  title   = {PatchScene: 一个关于场景生成的补丁方法 (示例标题)},
-  author  = {作者一 and 作者二 and 作者三},
-  journal = {期刊或会议 (例如：CVPR)},
-  year    = {2025},
-  pages   = {123-456}
+@inproceedings{patchscene2026,
+  title   = {PatchScene: Patch-based Voxel Diffusion Model for Large-Scale Scene Completion},
+  author  = {Xu, Qingdong and Zhu, Jiajun and Zhu, Shilin and He, Xinjing and Lu, Chao. and wanghuanran and Zhang, Jiyao},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year    = {2026}
 }
             </pre>
         </section>
+
+        <!-- 12. 致谢 (模仿 cadgrasp) -->
+        <footer class="text-center text-gray-600 mt-12 border-t pt-8">
+            <!-- 修改：去除中文 -->
+            <h3 class="text-xl font-semibold mb-4">Acknowledgements</h3>
+            <p class="mb-4">
+                <!-- 修改：中文提示 -> 英文 -->
+                [Add your acknowledgements here...]
+            </p>
+            <!-- 修改：中文提示 -> 英文 -->
+            <p>Website template inspired by <a href="https://cadgrasp.github.io/" class="text-blue-600 hover:underline" target="_blank">cadgrasp.github.io</a>.</p>
+        </footer>
 
     </div>
 
