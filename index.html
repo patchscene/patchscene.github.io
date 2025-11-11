@@ -140,20 +140,19 @@
           --- 布局调整 ---
           第 6 节 "Teaser" 图像移到这里
         -->
-        <!-- 6. "Teaser" 图像 (模仿 cadgrasp, 放在作者之后) -->
+        <!-- 6. "Teaser" (已修改：替换为视频) -->
         <section>
             <figure class="w-full">
                 <!-- 
-                  替换成你的 "Teaser" 图像.
-                  建议将图片 (例如 teaser.png) 也上传到仓库中.
+                  已修改：将占位符 img 替换为你的 mach-fuser-lidar.mp4 视频.
+                  设置 'autoplay loop muted playsinline' 使其像 GIF 一样自动播放.
+                  确保 'mach-fuser-lidar.mp4' 文件与 index.html 在同一目录下.
                 -->
-                <img src="https://placehold.co/1024x512/e2e8f0/4a5568?text=PatchScene+Teaser+Image+(Replace+Me)"
-                     alt="PatchScene Teaser Image"
-                     class="w-full h-auto rounded-lg shadow-lg border border-gray-200">
-                <!-- 修改：中文图注 -> 英文 -->
-                <figcaption class="text-center text-gray-600 mt-4 text-lg">
-                    Figure 1: Overview of the PatchScene method: achieving large-scale scene completion via patch-based voxel diffusion and spatio-temporal fusion.
-                </figcaption>
+                <video class="w-full h-auto rounded-lg shadow-lg border border-gray-200"
+                       autoplay loop muted playsinline>
+                    <source src="mach-fuser-lidar.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </figure>
         </section>
 
@@ -316,6 +315,47 @@
                         Figure 3: Completion results for 50m scenes.
                     </figcaption>
                 </figure>
+            </div>
+
+            <!-- 
+              --- 新增：你的数据集视频 ---
+            -->
+            <div class="mb-10">
+                <h3 class="text-center">Dataset Examples</h3>
+                <p class="text-center text-gray-600 mb-4">Demonstrations on our custom dataset, showing mechanical LiDAR and occupancy data completion.</p>
+                <!-- 使用网格布局来并排显示三个视频 -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div>
+                        <h4 class="text-xl font-semibold text-center mb-2">Mechanical LiDAR Completion</h4>
+                        <!-- 
+                          视频 1: 确保 'mach-fuser-lidar.mp4' 文件在同一目录下 
+                        -->
+                        <video class="w-full rounded-lg shadow-md border border-gray-200" controls muted playsinline>
+                            <source src="mach-fuser-lidar.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-semibold text-center mb-2">Occupancy Data Projection</h4>
+                        <!-- 
+                          视频 2: 确保 'mach-occ.mp4' 文件在同一目录下 
+                        -->
+                        <video class="w-full rounded-lg shadow-md border border-gray-200" controls muted playsinline>
+                            <source src="mach-occ.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-semibold text-center mb-2">Occupancy Data Completion</h4>
+                        <!-- 
+                          视频 3: 确保 'mach-occ-lidar2cam.mp4' 文件在同一目录下 
+                        -->
+                        <video class="w-full rounded-lg shadow-md border border-gray-200" controls muted playsinline>
+                            <source src="mach-occ-lidar2cam.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </D>
+                    </div>
+                </div>
             </div>
         </section>
 
