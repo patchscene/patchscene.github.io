@@ -111,7 +111,7 @@
                     <p>PatchScene decomposes the outdoor scene into overlapping 20 m by 20 m voxel patches. Each local patch is denoised independently in explicit occupancy space, allowing the model to generate fine geometry at a resolution that would be impractical for a single global dense grid.</p>
                 </div>
                 <video autoplay loop muted playsinline preload="metadata" aria-label="Local patch denoising in the center region">
-                    <source src="assets/videos/denoise-center-cropped.mp4" type="video/mp4">
+                    <source src="assets/videos/denoise-center-padded.mp4" type="video/mp4">
                 </video>
             </article>
 
@@ -122,7 +122,7 @@
                     <p>Independent patch generation can leave discontinuities in overlapping regions. During inverse diffusion, PatchScene projects neighboring noise predictions into a global field and stochastically couples 50% of overlap voxels with global context. This aligns adjacent patches while avoiding the blur introduced by deterministic averaging.</p>
                 </div>
                 <video autoplay loop muted playsinline preload="metadata" aria-label="Neighboring patch completion guided by the completed center patch">
-                    <source src="assets/videos/denoise-outer-ring-cropped.mp4" type="video/mp4">
+                    <source src="assets/videos/denoise-outer-ring-padded.mp4" type="video/mp4">
                 </video>
             </article>
 
